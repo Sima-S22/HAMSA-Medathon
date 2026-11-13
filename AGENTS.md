@@ -32,3 +32,5 @@ use the editor.
 ## HAMSA architecture
 - Keep the child journey in a pure typed session reducer and render its stages through reusable frontend components; session data must remain in memory without accounts or persistent storage for this MVP.
 - Extract original artwork from the reference PDF and serve uploaded media through asset pointers; this preserves identity without treating exported screens as static app pages.
+- Store prior stage and symptom locations separately from session answers; backward navigation restores location without undoing child responses.
+- Keep bilingual journey wording in a shared browser-safe module and use reusable name-entry and room components; repeated PDF screens differ only by language, avatar, symptom and answer state.
