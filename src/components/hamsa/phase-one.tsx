@@ -1,5 +1,5 @@
 import { useReducer, useState, useEffect, useRef } from 'react';
-import { ArrowRight, Check, X } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { initialSession, sessionReducer, wording } from '@/lib/hamsa-session';
@@ -70,8 +70,7 @@ export function PhaseOne() {
           {text.continue}{session.avatarConfirmed && <Check aria-hidden="true" />}
         </Button>
         <Dialog open={confirmationOpen} onOpenChange={setConfirmationOpen}>
-          <DialogContent className="avatar-confirmation" showCloseButton={false}>
-            <Button variant="ghost" size="icon" className="confirmation-close" aria-label={session.language === 'ar' ? 'إغلاق' : 'Close'} onClick={() => setConfirmationOpen(false)}><X /></Button>
+          <DialogContent className="avatar-confirmation" aria-describedby={undefined}>
             {session.avatar && <><img src={session.avatar === 'boy' ? boy.url : girl.url} alt="" /><DialogTitle>{text[session.avatar]}</DialogTitle><Check className="confirmation-check" aria-label={session.language === 'ar' ? 'تم اختيار الشخصية' : 'Character selected'} /></>}
           </DialogContent>
         </Dialog>
