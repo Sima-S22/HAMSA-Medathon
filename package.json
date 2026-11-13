@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "npm run check:media && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -13,7 +13,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "test:browser": "node scripts/browser-smoke.cjs"
+    "test:browser": "node scripts/browser-smoke.cjs",
+    "check:media": "node scripts/check-media.mjs",
+    "build:vercel": "NITRO_PRESET=vercel npm run build && node scripts/check-media.mjs --output .vercel/output/static"
   },
   "overrides": {
     "rolldown": "1.2.1"

@@ -41,3 +41,10 @@ npm run build
 See [MVP reference review and validation](docs/mvp-review.md) for the page map,
 implemented behavior, optional browser smoke checks, export schema and remaining
 design/device limitations. Use fictional child names for development.
+
+## Deploy to Vercel
+
+Use branch **`fix/vercel-media`**, or merge that branch into `main` first.
+`vercel.json` runs `npm run build:vercel`, which packages the original media
+and verifies Vercel's production static output. Keep Vercel's Output Directory
+at its default setting. See [Vercel media diagnosis and deployment steps](docs/vercel-deployment.md).
