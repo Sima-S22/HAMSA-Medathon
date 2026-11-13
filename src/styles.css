@@ -90,6 +90,12 @@
   --hamsa-back: oklch(0.977 0.013 268);
   --hamsa-flag: oklch(0.971 0.036 85);
   --hamsa-shadow: 0 6px 0 var(--hamsa-edge);
+  --hamsa-room-ink: oklch(0.29 0.065 264);
+  --hamsa-answer: oklch(0.945 0.031 292);
+  --hamsa-pink: oklch(0.712 0.153 347);
+  --hamsa-vomiting: oklch(0.742 0.105 154);
+  --hamsa-constipation: oklch(0.674 0.137 301);
+  --hamsa-diarrhea: oklch(0.718 0.112 239);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.487 0.219 266);
@@ -226,6 +232,101 @@
 .avatar-confirmation h2 { font-size: 30px; }
 .confirmation-check { color: var(--hamsa-blue); width: 32px; height: 32px; }
 .confirmation-close { position: absolute; right: 10px; top: 10px; }
+.hamsa-name { container-type: inline-size; }
+.hamsa-name header { top: 15%; }
+.hamsa-name header p { margin-top: 14px; }
+.name-back { position: absolute; left: 8.3%; top: 5.2%; height: 52px; border-radius: 22px; background: var(--hamsa-back); color: var(--primary); font-size: 20px; font-weight: 900; }
+.hamsa-name[dir=rtl] .name-back { left: auto; right: 8.3%; }
+.name-avatar { position: absolute; left: 38%; top: 31%; width: 24%; height: 36%; object-fit: contain; }
+.name-form { position: absolute; top: 70%; left: 23%; width: 54%; text-align: center; }
+.name-form input { width: 100%; height: 88px; border: 2px solid var(--hamsa-blue); border-radius: 28px; background: var(--background); box-shadow: var(--hamsa-shadow); color: var(--primary); font: inherit; font-size: 30px; text-align: center; outline-offset: 4px; }
+.name-continue { margin-top: 24px; width: 60%; height: 74px; border-radius: 26px; font-size: 30px; font-weight: 900; background: var(--hamsa-blue); box-shadow: var(--hamsa-shadow); }
+.name-continue:disabled { background: var(--hamsa-disabled); color: var(--hamsa-disabled-ink); opacity: 1; }
+.keyboard-open .name-form { top: 32%; }
+.name-label { display: block; font-size: 18px; color: var(--hamsa-subtitle); margin-bottom: 22px; }
+.name-keyboard { width: 148%; margin-left: -24%; }
+.name-keyboard p { font-size: 20px; margin: 12px 0 4px; }
+.keyboard-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 8px; }
+.keyboard-row > button { flex: 1; max-width: 80px; min-width: 0; height: 60px; padding: 0; border: 1px solid var(--hamsa-edge); border-radius: 14px; color: var(--primary); background: var(--hamsa-answer); font-size: 25px; font-weight: 900; }
+.keyboard-row:nth-of-type(2) { padding: 0 2%; }
+.keyboard-row:nth-of-type(3) { padding: 0 8%; }
+.keyboard-actions { display: flex; justify-content: center; gap: 14px; margin-top: 14px; }
+.keyboard-actions button { height: 54px; border-radius: 14px; font-size: 20px; font-weight: 900; color: var(--primary); }
+.keyboard-actions button:first-child { width: 46%; background: var(--hamsa-mint); }
+.keyboard-actions button:last-child { width: 23%; background: var(--hamsa-answer); }
+.name-required { display: block; font-size: 14px; color: var(--hamsa-subtitle); height: 20px; }
+.keyboard-open .name-continue { margin-top: 0; height: 60px; }
+.name-confetti i { position: absolute; background: var(--hamsa-yellow); width: 30px; height: 30px; clip-path: polygon(50% 0,60% 35%,100% 35%,70% 60%,80% 100%,50% 78%,15% 100%,25% 60%,0 35%,40% 35%); }
+.name-confetti i:nth-child(1) { right: 12%; top: 8%; }
+.name-confetti i:nth-child(2) { right: 13%; top: 30%; background: var(--hamsa-mint); border-radius: 50%; clip-path: none; }
+.name-confetti i:nth-child(3) { right: 12%; bottom: 7%; }
+.name-confetti i:nth-child(4) { left: 11%; bottom: 13%; width: 65px; height: 20px; border-radius: 12px; clip-path: none; background: var(--hamsa-gold); }
+.hamsa-room { position: relative; width: min(100%, calc(100svh * 1210 / 834), 1210px); aspect-ratio: 1210 / 834; container-type: inline-size; color: var(--hamsa-room-ink); }
+.room-background { position: absolute; width: 100%; height: 100%; object-fit: contain; }
+.room-navigation { position: absolute; left: 5.5%; top: 0.5%; display: flex; gap: 10px; z-index: 4; direction: ltr; }
+.room-navigation button { width: 130px; height: 44px; border-radius: 18px; background: var(--background); border: 2px solid var(--primary); color: var(--primary); font-size: 16px; font-weight: 900; }
+.room-navigation .room-end { border-color: var(--hamsa-purple); background: var(--hamsa-purple); color: var(--primary-foreground); }
+.room-back { position: absolute; left: 5.5%; bottom: 1%; z-index: 5; height: 32px; border-radius: 12px; background: var(--background); color: var(--primary); }
+.room-character { position: absolute; left: 37%; top: 21%; width: 29%; height: 75%; object-fit: contain; }
+.character-girl { left: 35%; width: 31%; }
+.room-character.character-animation { left: 33%; width: 35%; }
+.room-speech { position: absolute; left: 3.8%; top: 18%; width: 29%; height: 31%; border: 3px solid var(--hamsa-blue); border-radius: 28px; background: var(--background); padding: 20px; }
+.room-speech h1 { font-size: 17px; color: var(--hamsa-purple); font-weight: 900; }
+.room-speech span { position: absolute; bottom: 12px; left: 26%; color: var(--hamsa-blue); }
+.room-stomach { position: absolute; right: 6.5%; top: 37%; width: 22.5%; height: 14%; background: var(--hamsa-pink); color: var(--hamsa-room-ink); border: 3px solid var(--background); border-radius: 28px; font-size: 22px; font-weight: 900; flex-direction: column; }
+.room-stomach > span { color: var(--hamsa-yellow); font-size: 46px; line-height: 1; }
+.room-back-symptoms { position: absolute; right: 5.5%; top: 2.7%; border-radius: 24px; height: 54px; font-size: 18px; background: var(--background); color: var(--hamsa-room-ink); z-index: 5; }
+.room-animation-label { position: absolute; right: 7%; top: 22.5%; width: 26%; min-height: 14%; background: var(--background); border: 1px solid var(--hamsa-edge); border-radius: 22px; padding: 14px; text-align: center; }
+.room-animation-label h1 { margin: 0; font-size: 24px; font-weight: 900; }
+.room-continue { position: absolute; right: 6.5%; bottom: 6.5%; width: 25.8%; height: 10.5%; border-radius: 22px; font-size: 32px; font-weight: 900; }
+.room-replay { position: absolute; right: 8%; top: 40%; border-radius: 14px; color: var(--primary); background: var(--background); }
+.room-question { position: absolute; left: 5.5%; top: 6%; width: 30.5%; padding: 16px; background: var(--background); border: 2px solid var(--hamsa-edge); border-radius: 30px; text-align: center; }
+.room-symptom-title { color: var(--hamsa-purple); font-size: 22px; font-weight: 900; }
+.room-question h1 { font-size: 30px; font-weight: 900; line-height: 1.35; margin: 10px 0 16px; outline: none; }
+.room-answer { width: 100%; height: 64px; margin-bottom: 8px; border-radius: 22px; font-size: 29px; font-weight: 900; white-space: normal; }
+.answer-no, .answer-notSure { background: var(--hamsa-answer); color: var(--primary); }
+.room-reassurance p { font-size: 21px; color: var(--hamsa-subtitle); line-height: 1.4; margin-bottom: 16px; }
+.room-reassurance .room-answer { font-size: 21px; }
+.room-symptom-options { position: absolute; right: 4.5%; top: 3.5%; width: 30.5%; text-align: center; }
+.room-symptom-options h1 { margin: 0 0 16px; padding: 16px; background: var(--background); border: 2px solid var(--hamsa-edge); border-radius: 30px; min-height: 145px; font-size: 27px; font-weight: 900; line-height: 1.25; outline: none; }
+.room-symptom-choice { position: relative; width: 82%; height: 130px; margin-bottom: 16px; border-radius: 30px; border: 4px solid var(--background); color: var(--hamsa-room-ink); font-size: 20px; font-weight: 900; flex-direction: column; box-shadow: var(--hamsa-shadow); white-space: normal; }
+.room-symptom-choice > span { font-size: 42px; line-height: 1; }
+.choice-vomiting { background: var(--hamsa-vomiting); }
+.choice-constipation { background: var(--hamsa-constipation); }
+.choice-diarrhea { background: var(--hamsa-diarrhea); }
+.symptom-visited { position: absolute; top: 8px; right: 8px; }
+.room-done { width: 76%; height: 78px; border-radius: 22px; font-size: 28px; font-weight: 900; }
+.hamsa-thanks { background: var(--hamsa-back); text-align: center; }
+.hamsa-thanks header { top: 14%; }
+.hamsa-thanks header > span { font-size: 24px; font-weight: 900; }
+.hamsa-thanks h1 { margin-top: 20px; color: var(--hamsa-room-ink); }
+.hamsa-thanks > img { position: absolute; width: 32%; height: 42%; left: 34%; top: 37%; object-fit: contain; }
+@container (max-width: 1050px) {
+  .hamsa-name h1 { font-size: 36px; }
+  .name-form input { height: 64px; }
+  .name-label { margin-bottom: 14px; }
+  .keyboard-row > button { height: 44px; font-size: 22px; }
+  .keyboard-actions { margin-top: 8px; }
+  .keyboard-actions button { height: 40px; font-size: 17px; }
+  .name-continue { height: 56px; font-size: 25px; }
+  .keyboard-open .name-continue { height: 44px; }
+  .name-keyboard p { font-size: 17px; }
+  .room-navigation button { width: 96px; height: 36px; font-size: 14px; }
+  .room-question h1 { font-size: 23px; }
+  .room-symptom-title { font-size: 18px; }
+  .room-answer { height: 48px; font-size: 23px; border-radius: 16px; }
+  .room-reassurance p { font-size: 17px; }
+  .room-reassurance .room-answer { font-size: 16px; }
+  .room-symptom-options h1 { min-height: 100px; font-size: 21px; padding: 12px; margin-bottom: 12px; }
+  .room-symptom-choice { height: 94px; margin-bottom: 12px; font-size: 17px; border-radius: 24px; }
+  .room-symptom-choice > span { font-size: 32px; }
+  .room-done { height: 55px; font-size: 22px; }
+  .room-continue { font-size: 26px; }
+  .room-stomach { font-size: 18px; }
+  .room-stomach > span { font-size: 32px; }
+  .room-back-symptoms { font-size: 14px; height: 40px; }
+  .room-animation-label h1 { font-size: 20px; }
+}
 @media (min-aspect-ratio: 1210/834) {
   .hamsa-panel { width: min(100%, calc(100svh * 1210 / 834)); }
 }

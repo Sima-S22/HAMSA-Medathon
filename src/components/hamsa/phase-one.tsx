@@ -1,7 +1,9 @@
-import { useReducer, useState, useEffect, useRef } from 'react';
+import { useReducer, useEffect, useRef } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { NameEntry } from './name-entry';
+import { SymptomRoom } from './symptom-room';
+import { ThankYou } from './thank-you';
 import { initialSession, sessionReducer, wording } from '@/lib/hamsa-session';
 import background from '@/assets/welcome-scene.png.asset.json';
 import logo from '@/assets/hamsa-logo.png.asset.json';
@@ -18,7 +20,6 @@ function Confetti({ language = false }: { language?: boolean }) {
 
 export function PhaseOne() {
   const [session, dispatch] = useReducer(sessionReducer, initialSession);
-  const [confirmationOpen, setConfirmationOpen] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const text = wording[session.language];
 
@@ -54,7 +55,9 @@ export function PhaseOne() {
           </Button>
         </div>
       </section>
-    ) : (
+    ) : session.stage === 'name' ? <NameEntry session={session} dispatch={dispatch} />
+      : session.stage === 'thanks' ? <ThankYou session={session} dispatch={dispatch} />
+      : session.stage !== 'avatar' ? <SymptomRoom session={session} dispatch={dispatch} /> : (
       <section className={`hamsa-panel hamsa-avatar ${session.language === 'ar' ? 'avatar-ar' : ''}`} dir={session.language === 'ar' ? 'rtl' : 'ltr'} aria-label={text.heading}>
         <Confetti />
         <Button variant="ghost" className="hamsa-back" onClick={() => dispatch({ type: 'back' })}>{text.back}<ArrowRight /></Button>
@@ -66,14 +69,9 @@ export function PhaseOne() {
             {session.avatar === avatar && <Check className="avatar-check" aria-hidden="true" />}
           </Button>)}
         </div>
-        <Button className="hamsa-continue" disabled={!session.avatar} onClick={() => { dispatch({ type: 'confirm' }); setConfirmationOpen(true); }}>
+        <Button className="hamsa-continue" disabled={!session.avatar} onClick={() => dispatch({ type: 'confirm' })}>
           {text.continue}{session.avatarConfirmed && <Check aria-hidden="true" />}
         </Button>
-        <Dialog open={confirmationOpen} onOpenChange={setConfirmationOpen}>
-          <DialogContent className="avatar-confirmation" aria-describedby={undefined}>
-            {session.avatar && <><img src={session.avatar === 'boy' ? boy.url : girl.url} alt="" /><DialogTitle>{text[session.avatar]}</DialogTitle><Check className="confirmation-check" aria-label={session.language === 'ar' ? 'تم اختيار الشخصية' : 'Character selected'} /></>}
-          </DialogContent>
-        </Dialog>
       </section>
     )}
   </main>;
