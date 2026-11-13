@@ -79,9 +79,13 @@ which currently looks for `dist/server/server.js` rather than Nitro's Vercel
 output. The explicit `srvx` command above verifies the real deployment files.
 This adapter limitation is separate from the confirmed production media issue.
 
-No audio file is currently present in the fetched main or MVP branch, and the
-application has no audio path to repair. The media checker includes public audio
-files automatically when an audio asset is committed. No substitute recording
-was added.
+During verification, main received `public/._AUDIO-2026-11-13-19-25-24.mp3` in
+commit `6835b5a`. This file is 4,096 bytes and identifies as AppleDouble Macintosh
+metadata; `ffprobe` rejects it as invalid media. It is not the actual recording.
+The main update is merged into this branch so that upload is preserved.
+The checker ignores unreferenced `._*` sidecars, rejects them if referenced as
+media, and Git ignores future sidecars. There is still no playable recording or
+app audio URL to repair. Upload the original MP3 without the `._` prefix to add
+audio; no substitute recording was added.
 
 Provider reference: [Nitro's Vercel deployment documentation](https://nitro.build/deploy/providers/vercel).

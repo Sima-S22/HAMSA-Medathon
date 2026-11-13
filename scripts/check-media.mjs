@@ -53,7 +53,15 @@ assert(referenced.size > 0, "No application media references found");
 
 // Also include newly committed audio/video and other public media, even when
 // they have not been attached to an app screen yet.
-const publicMedia = (await files(publicDir)).filter((file) => mediaExtension.test(file));
+const publicFiles = await files(publicDir);
+const sidecars = publicFiles.filter((file) => path.basename(file).startsWith("._"));
+const publicMedia = publicFiles.filter(
+  (file) => mediaExtension.test(file) && !path.basename(file).startsWith("._"),
+);
+if (sidecars.length)
+  console.log(
+    `Ignoring ${sidecars.length} macOS AppleDouble sidecar file(s); these are metadata, not playable media.`,
+  );
 const urls = new Set([
   ...referenced,
   ...publicMedia.map((file) => "/" + path.relative(publicDir, file).split(path.sep).join("/")),
@@ -71,6 +79,10 @@ for (const url of [...urls].sort()) {
   }
   const original = await readFile(dir);
   assert(original.length > 0, `Empty media file: ${url}`);
+  assert(
+    original.subarray(0, 4).toString("hex") !== "00051607",
+    `AppleDouble metadata is not playable media: ${url}`,
+  );
   assert(
     !original.subarray(0, 100).toString().includes("git-lfs.github.com/spec"),
     `Undownloaded Git LFS pointer: ${url}`,
