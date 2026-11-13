@@ -327,6 +327,41 @@
   .room-back-symptoms { font-size: 14px; height: 40px; }
   .room-animation-label h1 { font-size: 20px; }
 }
+@container (max-width: 800px) {
+  .room-navigation button { width: 76px; height: 28px; font-size: 12px; }
+  .room-question { padding: 10px; border-radius: 22px; }
+  .room-question h1 { font-size: 18px; margin: 6px 0 10px; }
+  .room-symptom-title { font-size: 15px; }
+  .room-answer { height: 38px; font-size: 18px; margin-bottom: 6px; }
+  .room-reassurance p { font-size: 14px; margin-bottom: 10px; }
+  .room-reassurance .room-answer { font-size: 13px; }
+  .room-symptom-options h1 { min-height: 88px; font-size: 17px; padding: 10px; margin-bottom: 10px; }
+  .room-symptom-choice { height: 70px; font-size: 14px; margin-bottom: 10px; border-radius: 20px; }
+  .room-symptom-choice > span { font-size: 25px; }
+  .room-done { height: 44px; font-size: 17px; }
+  .room-stomach { font-size: 14px; }
+  .room-continue { font-size: 22px; }
+  .room-back-symptoms { height: 32px; font-size: 12px; }
+  .room-animation-label h1 { font-size: 17px; }
+}
+@media (max-width: 700px) {
+  .hamsa-name.hamsa-panel { display: block; padding: 86px 20px 30px; }
+  .hamsa-name header { position: static; }
+  .hamsa-name h1 { font-size: 28px; }
+  .hamsa-name header p { font-size: 17px; }
+  .name-back { top: 20px; left: 20px; height: 40px; font-size: 17px; }
+  .name-avatar { position: static; width: 160px; height: 190px; margin: 20px auto; }
+  .name-form, .keyboard-open .name-form { position: static; width: 100%; margin-top: 24px; }
+  .name-form input { height: 60px; }
+  .name-keyboard { width: 100%; margin: 0; }
+  .keyboard-row { gap: 4px; }
+  .keyboard-row > button { height: 38px; font-size: 17px; border-radius: 8px; }
+  .keyboard-actions button { font-size: 14px; }
+  .keyboard-actions button:last-child { width: 35%; }
+  .name-continue { width: 72%; height: 52px; font-size: 24px; }
+  .hamsa-thanks.hamsa-panel { display: block; }
+  .hamsa-thanks > img { position: static; width: 60%; height: 260px; margin: 30px auto 0; }
+}
 @media (min-aspect-ratio: 1210/834) {
   .hamsa-panel { width: min(100%, calc(100svh * 1210 / 834)); }
 }

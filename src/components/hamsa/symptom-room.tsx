@@ -3,7 +3,7 @@ import { ArrowLeft, Check, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { HamsaSession, SessionAction, Symptom, Answer } from '@/lib/hamsa-session';
 import { journeyWording, symptomNames } from '@/lib/hamsa-wording';
-import room from '@/assets/room.png.asset.json';
+import room from '@/assets/room-layer.png.asset.json';
 import standingBoy from '@/assets/boy-standing.png.asset.json';
 import standingGirl from '@/assets/girl-standing.png.asset.json';
 import stomachBoy from '@/assets/stomach-boy.gif.asset.json';
