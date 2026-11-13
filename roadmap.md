@@ -1,9 +1,9 @@
 # HAMSA
 
 - [x] Review all 79 PDF pages and map reusable screens, states, and missing content.
-- [ ] Build Phase 1 only: welcome, bilingual language selection, avatar selection, and working navigation.
-- [ ] Keep language and avatar in session-only state and test selection rules.
-- [ ] Verify Phase 1 on laptop, 11-inch iPad landscape, and narrow preview.
+- [x] Build Phase 1 only: welcome, bilingual language selection, avatar selection, and working navigation.
+- [x] Keep language and avatar in session-only state and test selection rules (7 rule tests passed).
+- [x] Verify Phase 1 on laptop, 11-inch iPad landscape, and narrow preview; both languages, both avatars, confirmation, back navigation, and reload reset passed.
 
 ## Deferred by the current Phase 1 request
 - Name entry and keyboard, interactive room, symptom animations and answer pathways.
