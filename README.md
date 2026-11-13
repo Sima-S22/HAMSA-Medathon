@@ -22,3 +22,29 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## HAMSA MVP
+
+The existing bilingual child journey now continues through the four reference
+symptoms to an editable clinician summary, PNG/JSON downloads, print/PDF and a
+session ending. Original illustrations and animations are served locally.
+Session data is held in memory; refresh, confirmed restart or final End clears
+it. No accounts or backend are required.
+
+```sh
+npm test
+npm run typecheck
+npm run lint
+npm run build
+```
+
+See [MVP reference review and validation](docs/mvp-review.md) for the page map,
+implemented behavior, optional browser smoke checks, export schema and remaining
+design/device limitations. Use fictional child names for development.
+
+## Deploy to Vercel
+
+Use branch **`fix/vercel-media`**, or merge that branch into `main` first.
+`vercel.json` runs `npm run build:vercel`, which packages the original media
+and verifies Vercel's production static output. Keep Vercel's Output Directory
+at its default setting. See [Vercel media diagnosis and deployment steps](docs/vercel-deployment.md).

@@ -9,6 +9,15 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'Nunito'; font-style: normal; font-weight: 400 900;
+  font-display: swap; src: url('/fonts/nunito.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Arabic'; font-style: normal; font-weight: 400 900;
+  font-display: swap; src: url('/fonts/noto-sans-arabic.ttf') format('truetype');
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -244,7 +253,7 @@
 .name-continue:disabled { background: var(--hamsa-disabled); color: var(--hamsa-disabled-ink); opacity: 1; }
 .keyboard-open .name-form { top: 32%; }
 .name-label { display: block; font-size: 18px; color: var(--hamsa-subtitle); margin-bottom: 22px; }
-.name-keyboard { width: 148%; margin-left: -24%; }
+.name-keyboard { width: 148%; margin-inline-start: -24%; }
 .name-keyboard p { font-size: 20px; margin: 12px 0 4px; }
 .keyboard-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 8px; }
 .keyboard-row > button { flex: 1; max-width: 80px; min-width: 0; height: 60px; padding: 0; border: 1px solid var(--hamsa-edge); border-radius: 14px; color: var(--primary); background: var(--hamsa-answer); font-size: 25px; font-weight: 900; }
@@ -262,7 +271,7 @@
 .name-confetti i:nth-child(3) { right: 12%; bottom: 7%; }
 .name-confetti i:nth-child(4) { left: 11%; bottom: 13%; width: 65px; height: 20px; border-radius: 12px; clip-path: none; background: var(--hamsa-gold); }
 .hamsa-room { position: relative; width: min(100%, calc(100svh * 1210 / 834), 1210px); aspect-ratio: 1210 / 834; container-type: inline-size; color: var(--hamsa-room-ink); }
-.room-background { position: absolute; width: 100%; height: 100%; object-fit: contain; }
+.room-background { position: absolute; width: 100%; height: 100%; object-fit: cover; }
 .room-navigation { position: absolute; left: 5.5%; top: 0.5%; display: flex; gap: 10px; z-index: 4; direction: ltr; }
 .room-navigation button { width: 130px; height: 44px; border-radius: 18px; background: var(--background); border: 2px solid var(--primary); color: var(--primary); font-size: 16px; font-weight: 900; }
 .room-navigation .room-end { border-color: var(--hamsa-purple); background: var(--hamsa-purple); color: var(--primary-foreground); }
@@ -397,4 +406,497 @@
   .animated-fox { display: none; }
   .still-fox { display: block; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Completion screens reuse the reference's room, fox, pale panel and blue controls. */
+.room-fox {
+  position: absolute;
+  left: 3%;
+  bottom: 5%;
+  width: 28%;
+  height: 39%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.room-stomach svg,
+.room-symptom-choice svg:not(.symptom-visited) {
+  width: 1.6em;
+  height: 1.6em;
+}
+.room-review {
+  position: absolute;
+  right: 0;
+  top: 104%;
+  width: 100%;
+  min-height: 36px;
+  border-radius: 14px;
+  background: var(--background);
+  color: var(--primary);
+}
+.room-symptom-options {
+  top: 6%;
+}
+.room-symptom-options h1 {
+  min-height: 0;
+  font-size: clamp(17px, 2.2cqw, 27px);
+  margin-bottom: 1.2cqw;
+  padding: 1.3cqw;
+}
+.room-symptom-choice {
+  height: 10.5cqw;
+  margin-bottom: 1cqw;
+}
+.room-done {
+  height: 5.8cqw;
+}
+.room-question {
+  top: 8%;
+}
+.room-back,
+.room-navigation button,
+.room-back-symptoms,
+.room-replay {
+  min-height: 44px;
+}
+.room-replay {
+  min-width: 44px;
+}
+[dir="rtl"] .back-arrow {
+  transform: rotate(180deg);
+}
+.name-keyboard .keyboard-actions button {
+  width: auto;
+  min-width: 70px;
+}
+.name-keyboard .keyboard-actions button:nth-child(2) {
+  width: 40%;
+  background: var(--hamsa-mint);
+}
+.name-keyboard .keyboard-actions button:first-child {
+  background: var(--hamsa-answer);
+}
+.thanks-summary {
+  position: absolute;
+  top: 80%;
+  left: 29%;
+  width: 42%;
+  min-height: 60px;
+  height: 8.5%;
+  border-radius: 24px;
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 900;
+}
+.hamsa-summary {
+  container-type: inline-size;
+  color: var(--hamsa-room-ink);
+}
+.summary-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.summary-back {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  z-index: 5;
+  border-radius: 16px;
+  min-height: 44px;
+  background: var(--background);
+  color: var(--primary);
+}
+[dir="rtl"] .summary-back {
+  left: auto;
+  right: 3%;
+}
+.summary-card {
+  position: absolute;
+  right: 5%;
+  top: 11%;
+  width: 47%;
+  padding: 2.5cqw;
+  border: 1px solid var(--hamsa-edge);
+  border-radius: 28px;
+  background: oklch(1 0 0 / 97%);
+  text-align: center;
+}
+.summary-card h1 {
+  font-size: clamp(22px, 2.7cqw, 34px);
+}
+.summary-card p {
+  margin: 1.5cqw 0;
+  font-size: clamp(14px, 1.5cqw, 19px);
+  line-height: 1.6;
+}
+.summary-card .summary-name {
+  color: var(--primary);
+  overflow-wrap: anywhere;
+}
+.summary-card dl {
+  margin: 2cqw 0;
+}
+.summary-finding {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  text-align: start;
+  gap: 3px 12px;
+  padding: 0.6cqw 0;
+  border-bottom: 1px solid var(--hamsa-edge);
+}
+.summary-finding dt {
+  font-weight: 800;
+  font-size: clamp(15px, 1.65cqw, 21px);
+}
+.summary-finding dd {
+  margin: 0;
+  font-size: clamp(14px, 1.5cqw, 19px);
+}
+.summary-edit {
+  grid-column: 1 / -1;
+  justify-self: end;
+  min-height: 44px;
+  color: var(--primary);
+  text-decoration: underline;
+}
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.summary-actions > button {
+  min-height: 44px;
+  border-radius: 16px;
+}
+.summary-actions .room-navigation {
+  position: static;
+  flex-wrap: wrap;
+}
+.summary-actions .room-navigation button {
+  width: auto;
+  padding: 0 14px;
+}
+.summary-saving {
+  background: var(--hamsa-back);
+}
+.save-heading {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-size: 30px !important;
+}
+.summary-saving .summary-card {
+  top: 21%;
+  right: 20%;
+  width: 60%;
+}
+.summary-saving .summary-finding {
+  padding: 1.6cqw 0;
+}
+.summary-brand {
+  display: block;
+  margin-top: 1.5cqw;
+  font-weight: 900;
+  color: var(--primary);
+}
+.summary-downloads {
+  position: absolute;
+  top: 82%;
+  left: 5%;
+  right: 5%;
+  text-align: center;
+}
+.summary-downloads p {
+  font-size: clamp(13px, 1.5cqw, 18px);
+  margin: 6px 0;
+}
+.summary-downloads > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.summary-downloads button {
+  min-height: 44px;
+  border-radius: 14px;
+}
+.hamsa-ended {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+  text-align: center;
+  background: var(--hamsa-back);
+}
+.hamsa-ended > span {
+  color: var(--primary);
+  font-weight: 900;
+}
+.hamsa-ended .room-navigation {
+  position: static;
+}
+.hamsa-ended .room-navigation button {
+  width: auto;
+  padding: 0 24px;
+}
+@media (max-width: 700px) {
+  .hamsa-room {
+    width: 100%;
+    min-height: 100svh;
+    aspect-ratio: auto;
+    overflow: hidden;
+  }
+  .room-background {
+    object-fit: cover;
+    opacity: 0.45;
+  }
+  .room-character {
+    left: 44%;
+    top: 23%;
+    width: 50%;
+    height: 58%;
+  }
+  .room-character.character-animation {
+    left: 25%;
+    top: 15%;
+    width: 70%;
+    height: 65%;
+  }
+  .room-fox {
+    left: 1%;
+    bottom: 8%;
+    width: 35%;
+    height: 32%;
+  }
+  .room-navigation {
+    top: 12px;
+    left: 12px;
+  }
+  .room-speech {
+    top: 15%;
+    left: 5%;
+    width: 55%;
+    height: 20%;
+  }
+  .room-stomach {
+    right: 4%;
+    top: 65%;
+    width: 52%;
+    height: 15%;
+    font-size: 20px;
+  }
+  .room-question {
+    top: 14%;
+    left: 4%;
+    width: 78%;
+    padding: 20px;
+  }
+  .room-question h1 {
+    font-size: 25px;
+  }
+  .room-answer {
+    min-height: 54px;
+    font-size: 22px;
+  }
+  .room-symptom-options {
+    top: 15%;
+    right: 4%;
+    width: 66%;
+  }
+  .room-symptom-options h1 {
+    padding: 14px;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .room-symptom-choice {
+    height: 90px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .room-done {
+    min-height: 50px;
+    font-size: 20px;
+  }
+  .room-review {
+    top: 102%;
+  }
+  .room-continue {
+    min-height: 54px;
+    width: 52%;
+    font-size: 24px;
+    bottom: 8%;
+  }
+  .room-animation-label {
+    top: 15%;
+    right: 4%;
+    width: 40%;
+  }
+  .room-back-symptoms {
+    top: 70px;
+    right: 4%;
+    font-size: 14px;
+  }
+  .room-replay {
+    top: 38%;
+    right: 5%;
+  }
+  .room-back {
+    bottom: 14px;
+  }
+  .thanks-summary {
+    position: static;
+    width: 85%;
+    margin: 20px auto;
+    display: flex;
+  }
+  .hamsa-summary.hamsa-panel {
+    display: block;
+    padding: 96px 18px 24px;
+  }
+  .summary-scene {
+    opacity: 0.3;
+  }
+  .summary-card,
+  .summary-saving .summary-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    padding: 22px;
+    margin: 0 auto;
+  }
+  .summary-card h1 {
+    font-size: 28px;
+  }
+  .summary-card p {
+    font-size: 16px;
+    margin: 16px 0;
+  }
+  .summary-finding,
+  .summary-saving .summary-finding {
+    padding: 12px 0;
+  }
+  .summary-finding dt,
+  .summary-finding dd {
+    font-size: 16px;
+  }
+  .summary-actions {
+    margin-top: 18px;
+  }
+  .summary-downloads,
+  .save-heading {
+    position: relative;
+    inset: auto;
+    margin: 18px auto;
+  }
+  .save-heading {
+    font-size: 24px !important;
+  }
+  .summary-downloads p {
+    font-size: 15px;
+    margin: 12px 0;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm;
+  }
+  body,
+  .hamsa-app,
+  .summary-saving {
+    background: white;
+  }
+  .hamsa-app {
+    display: block;
+    min-height: 0;
+  }
+  .hamsa-summary.hamsa-panel {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 0;
+  }
+  .summary-back,
+  .save-heading,
+  .summary-downloads,
+  .summary-scene,
+  .summary-actions,
+  .summary-edit {
+    display: none !important;
+  }
+  .hamsa-summary .summary-card {
+    position: static;
+    width: 100%;
+    padding: 24px;
+    border: 1px solid gray;
+    break-inside: avoid;
+  }
+  .summary-card h1 {
+    font-size: 28px;
+  }
+  .summary-card p,
+  .summary-finding dt,
+  .summary-finding dd {
+    font-size: 18px;
+  }
+  .summary-finding {
+    padding: 20px 0;
+  }
+}
+/* Keep the save preview and download controls in normal flow so Arabic wraps
+   cannot overlap the report on landscape tablets. */
+.summary-saving {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 82px 20px 16px;
+  gap: 14px;
+}
+.summary-saving .save-heading {
+  position: static;
+  flex: none;
+}
+.summary-saving .summary-card {
+  position: static;
+  flex: none;
+  width: 60%;
+  padding: 1.5cqw 2.5cqw;
+}
+.summary-saving .summary-finding {
+  padding: 0.7cqw 0;
+}
+.summary-saving .summary-card p {
+  margin: 1cqw 0;
+}
+.summary-saving .summary-card dl {
+  margin: 1.2cqw 0;
+}
+.summary-saving .summary-brand {
+  margin-top: 0.5cqw;
+}
+.summary-saving .summary-downloads {
+  position: static;
+  flex: none;
+  width: 96%;
+}
+@media (max-width: 700px) {
+  .summary-saving .summary-card {
+    width: 100%;
+    padding: 22px;
+  }
+  .summary-saving .summary-finding {
+    padding: 12px 0;
+  }
+  .summary-saving .summary-card p {
+    margin: 16px 0;
+  }
+}
+@media print {
+  .hamsa-summary.summary-saving .summary-card { width: 100%; padding: 24px; }
 }

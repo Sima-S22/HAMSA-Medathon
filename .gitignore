@@ -30,3 +30,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local browser verification artifacts
+/work/
+
+# Vercel generated build output and local project settings
+.vercel/
+
+# macOS resource-fork sidecars are not actual image/audio assets
+._*
