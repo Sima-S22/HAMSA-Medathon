@@ -2,7 +2,7 @@
 
 # North star
 
-Sick children get their symptoms understood by their clinician
+Clinicians clearly understand children’s reported symptoms, accurately reflecting what each child shared.
 
 ## Metric
 
