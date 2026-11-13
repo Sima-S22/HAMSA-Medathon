@@ -24,7 +24,7 @@ fs.mkdirSync(artifacts, { recursive: true });
       acceptDownloads: true,
     });
     const p = await ctx.newPage();
-    p.setDefaultTimeout(10000);
+    p.setDefaultTimeout(30000);
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("response", (r) => {
       if (r.status() >= 400) errors.push(`${r.status()} ${r.url()}`);

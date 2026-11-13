@@ -1,13 +1,22 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { PhaseOne } from "@/components/hamsa/phase-one";
-afterEach(cleanup);
+beforeEach(() => {
+  vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
+  vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+});
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
 const click = (name: string) => fireEvent.click(screen.getByRole("button", { name }));
 
 describe("HAMSA rendered journey", () => {
-  it("completes the English journey, changes a response, exports, and clears the session", () => {
+  it("completes the English journey, changes a response, exports, and clears the session", async () => {
     render(<PhaseOne />);
-    click("Start");
+    await act(async () => {
+      click("Start");
+    });
     click("English");
     click("Boy");
     click("Continue");
@@ -46,15 +55,19 @@ describe("HAMSA rendered journey", () => {
     expect(screen.getByRole("heading", { name: "Session ended" })).toBeInTheDocument();
     expect(screen.queryByText("Test Sami")).not.toBeInTheDocument();
     click("Restart");
-    click("Start");
+    await act(async () => {
+      click("Start");
+    });
     click("English");
     click("Girl");
     click("Continue");
     expect(screen.getByLabelText("Tap the box to enter your name")).toHaveValue("");
   });
-  it("supports Arabic girl wording, RTL, virtual keyboard, backspace, and backward answer editing", () => {
+  it("supports Arabic girl wording, RTL, virtual keyboard, backspace, and backward answer editing", async () => {
     render(<PhaseOne />);
-    click("Start");
+    await act(async () => {
+      click("Start");
+    });
     click("العربية");
     click("بنت");
     click("يلا نكمّل!");

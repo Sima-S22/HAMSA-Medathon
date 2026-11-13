@@ -44,7 +44,28 @@ design/device limitations. Use fictional child names for development.
 
 ## Deploy to Vercel
 
-Use branch **`fix/vercel-media`**, or merge that branch into `main` first.
+Deploy `main` after merging the feature PR you want to use. For background audio,
+use **`feat/background-audio`**, or merge that branch into `main` first.
 `vercel.json` runs `npm run build:vercel`, which packages the original media
 and verifies Vercel's production static output. Keep Vercel's Output Directory
 at its default setting. See [Vercel media diagnosis and deployment steps](docs/vercel-deployment.md).
+
+## Background audio
+
+The original `public/AUDIO-2026-11-13-19-25-24.mp3` loops after the child taps
+**Start**. It continues across journey screens without restarting. The sound
+button in the top-right corner turns it off/on, with English and Arabic labels.
+Playback starts at 25% volume where the browser supports software volume;
+on devices that use hardware volume, use the device's volume buttons.
+Restart and final End pause and reset the track. Refresh waits for another tap;
+no sound preference or child data is persisted. Playback errors never block the
+journey, and the sound button can retry after a browser blocks playback.
+
+The recording is bundled with the Vercel build; it needs no paid service or
+external audio API. Optional actual-audio browser verification:
+
+```sh
+HAMSA_BASE_URL=http://127.0.0.1:4176 node scripts/background-audio-smoke.cjs
+```
+
+Use the same optional Playwright setup as `npm run test:browser`.
