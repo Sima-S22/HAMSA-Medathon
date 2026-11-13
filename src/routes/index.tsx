@@ -5,8 +5,8 @@ import { PhaseOne } from '@/components/hamsa/phase-one';
 // project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: 'HAMSA | همسة — Choose your character' },
-    { name: 'description', content: 'HAMSA helps children express how they feel. Choose English or Arabic and a friendly character to begin.' },
+    { title: 'HAMSA | همسة — Share how you feel' },
+    { name: 'description', content: 'A bilingual child-friendly experience for communicating symptoms with original HAMSA characters and interactive rooms. Communication support only.' },
     { property: 'og:title', content: 'HAMSA | همسة' },
     { property: 'og:description', content: 'A child-friendly bilingual symptom communication experience.' },
     { property: 'og:type', content: 'website' },

@@ -20,7 +20,7 @@ export function NameEntry({ session, dispatch }: { session: HamsaSession; dispat
     dispatch({ type: 'name', name: session.name.slice(0, start) + value + session.name.slice(end) });
     requestAnimationFrame(() => { input.current?.focus(); input.current?.setSelectionRange(start + value.length, start + value.length); });
   }
-  return <section className={`hamsa-panel hamsa-name ${keyboardOpen ? 'keyboard-open' : ''}`} dir={arabic ? 'rtl' : 'ltr'} onKeyDown={event => { if (event.key === 'Escape') { setKeyboardOpen(false); input.current?.blur(); } }}>
+  return <section className={`hamsa-panel hamsa-name ${keyboardOpen ? 'keyboard-open' : ''}`} dir={arabic ? 'rtl' : 'ltr'} onPointerDown={event => { if (event.target === event.currentTarget) { setKeyboardOpen(false); input.current?.blur(); } }} onKeyDown={event => { if (event.key === 'Escape') { setKeyboardOpen(false); input.current?.blur(); } }}>
     <div className="name-confetti" aria-hidden="true"><i /><i /><i /><i /></div>
     <Button variant="ghost" className="name-back" onClick={() => dispatch({ type: 'back' })}>{arabic ? <ArrowRight /> : <ArrowLeft />}{text.back}</Button>
     <header><h1 ref={heading} tabIndex={-1}>{text.nameHeading}</h1><p>{text.nameSubtitle}</p></header>
