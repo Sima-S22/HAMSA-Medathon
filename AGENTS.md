@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## HAMSA architecture
+- Keep the child journey in a pure typed session reducer and render its stages through reusable frontend components; session data must remain in memory without accounts or persistent storage for this MVP.
+- Extract original artwork from the reference PDF and serve uploaded media through asset pointers; this preserves identity without treating exported screens as static app pages.
