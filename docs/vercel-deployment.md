@@ -84,8 +84,10 @@ commit `6835b5a`. This file is 4,096 bytes and identifies as AppleDouble Macinto
 metadata; `ffprobe` rejects it as invalid media. It is not the actual recording.
 The main update is merged into this branch so that upload is preserved.
 The checker ignores unreferenced `._*` sidecars, rejects them if referenced as
-media, and Git ignores future sidecars. There is still no playable recording or
-app audio URL to repair. Upload the original MP3 without the `._` prefix to add
-audio; no substitute recording was added.
+media, and Git ignores future sidecars. The original recording was subsequently added as
+`public/AUDIO-2026-11-13-19-25-24.mp3` in `c5fb03b`: a valid MP3, 5,402,791 bytes,
+207.7 seconds long. `feat/background-audio` references this exact recording from
+the background player. Production media verification now covers 22 files,
+including the MP3. The original file is preserved byte-for-byte.
 
 Provider reference: [Nitro's Vercel deployment documentation](https://nitro.build/deploy/providers/vercel).

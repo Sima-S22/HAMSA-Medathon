@@ -8,6 +8,7 @@ import { initialSession, sessionReducer, wording } from "@/lib/hamsa-session";
 import { media } from "@/lib/hamsa-media";
 import { ClinicalSummary } from "./clinical-summary";
 import { SessionControls } from "./session-controls";
+import { BackgroundAudio, type BackgroundAudioControls } from "./background-audio";
 
 function Confetti({ language = false }: { language?: boolean }) {
   return (
@@ -23,6 +24,7 @@ function Confetti({ language = false }: { language?: boolean }) {
 export function PhaseOne() {
   const [session, dispatch] = useReducer(sessionReducer, initialSession);
   const heading = useRef<HTMLHeadingElement>(null);
+  const backgroundAudio = useRef<BackgroundAudioControls>(null);
   const text = wording[session.language];
 
   useEffect(() => {
@@ -38,6 +40,12 @@ export function PhaseOne() {
 
   return (
     <main className={`hamsa-app stage-${session.stage}`}>
+      <BackgroundAudio
+        ref={backgroundAudio}
+        src={media.backgroundAudio}
+        language={session.language}
+        stopped={session.stage === "welcome" || session.stage === "ended"}
+      />
       {session.stage === "welcome" ? (
         <section className="hamsa-welcome" aria-label="HAMSA welcome">
           <img className="welcome-background" src={media.welcome} alt="" />
@@ -46,7 +54,13 @@ export function PhaseOne() {
           </h1>
           <img className="welcome-fox animated-fox" src={media.fox} alt="HAMSA fox mascot" />
           <img className="welcome-fox still-fox" src={media.stillFox} alt="HAMSA fox mascot" />
-          <Button className="hamsa-start" onClick={() => dispatch({ type: "start" })}>
+          <Button
+            className="hamsa-start"
+            onClick={() => {
+              backgroundAudio.current?.start();
+              dispatch({ type: "start" });
+            }}
+          >
             Start
           </Button>
         </section>

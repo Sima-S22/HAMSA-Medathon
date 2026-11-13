@@ -900,3 +900,38 @@
 @media print {
   .hamsa-summary.summary-saving .summary-card { width: 100%; padding: 24px; }
 }
+
+/* One audio player stays mounted across journey screens. */
+.hamsa-background-audio {
+  position: fixed;
+  top: max(8px, env(safe-area-inset-top));
+  right: max(8px, env(safe-area-inset-right));
+  z-index: 40;
+}
+.hamsa-background-audio > button {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background: var(--background);
+  color: var(--primary);
+  border-color: var(--hamsa-blue);
+  box-shadow: var(--hamsa-shadow);
+}
+.audio-playback-status {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: min(260px, calc(100vw - 24px));
+  padding: 12px;
+  border: 1px solid var(--hamsa-edge);
+  border-radius: 16px;
+  background: var(--background);
+  color: var(--hamsa-room-ink);
+  font-size: 15px;
+  box-shadow: var(--hamsa-shadow);
+}
+.hamsa-summary[dir="rtl"] .summary-back { right: 70px; }
+@media print {
+  .hamsa-background-audio { display: none; }
+}

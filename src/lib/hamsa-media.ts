@@ -1,6 +1,7 @@
 // Original Lovable asset pointers remain in src/assets. These exact local copies
 // let ordinary Vite builds work without Lovable's /__l5e asset gateway.
 export const media = {
+  backgroundAudio: "/AUDIO-2026-11-13-19-25-24.mp3",
   welcome: "/media/welcome-scene.png",
   logo: "/media/hamsa-logo.png",
   fox: "/media/fox.gif",
